@@ -6,6 +6,8 @@ const SERVER_URL = "http://localhost:3006/api";
 
 getButton.addEventListener("click", () => {
   fetchDogs();
+  para.className = "get";
+  para.textContent = "GET request was successful";
 });
 
 const fetchDogs = () => {
