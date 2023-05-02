@@ -56,7 +56,7 @@ postButton.addEventListener("click", () => {
 });
 
 putButton.addEventListener("click", () => {
-  let dog = {
+  let updatedDog = {
     name: "Proud Mary",
     age: 25,
     gender: "Female",
@@ -66,7 +66,7 @@ putButton.addEventListener("click", () => {
   let xhr = new AjaxLib();
   let url = `${SERVER_URL}/dogs/1`;
 
-  xhr.put(url, dog, (responseData) => {
+  xhr.put(url, updatedDog, (responseData) => {
     fetchDogs();
     para.className = "put";
     para.textContent = responseData.message;

@@ -35,7 +35,7 @@ function AjaxLib() {
     this.xhr.send(JSON.stringify(dog)); // sending raw JSON data to the server
   };
 
-  this.put = (url, dog, callback) => {
+  this.put = (url, updatedDog, callback) => {
     this.xhr.open("PUT", url);
     this.xhr.setRequestHeader("Content-Type", "application/json");
     this.xhr.onload = () => {
@@ -43,7 +43,7 @@ function AjaxLib() {
       let putRequestData = JSON.parse(data);
       callback(putRequestData);
     };
-    this.xhr.send(JSON.stringify(dog));
+    this.xhr.send(JSON.stringify(updatedDog));
   };
 }
 
