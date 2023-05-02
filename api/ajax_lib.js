@@ -5,7 +5,7 @@ function AjaxLib() {
 
   this.get = (url, callback) => {
     // set up AJAX object / engine
-    this.xhr.open("GET", url);
+    this.xhr.open("GET", url, false); // pass in false to make synchronous
 
     // define AJAX callback
     this.xhr.onload = () => {
