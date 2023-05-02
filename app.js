@@ -1,4 +1,4 @@
-import { AjaxLib } from "./api/ajax_lib";
+import { AjaxLib } from "./api/ajax_lib.js";
 
 let para = document.querySelector("p");
 let table = document.getElementById("tableResults");
@@ -14,31 +14,23 @@ getButton.addEventListener("click", () => {
 
 const fetchDogs = () => {
   let url = `${SERVER_URL}/dogs`;
-  let method = "GET";
+  let xhr = new AjaxLib(); // note how this is a constructor function
 
-  let xhr = new XMLHttpRequest();
-  xhr.open(method, url);
-  xhr.onload = () => {
-    if (xhr.status === 200) {
-      let data = xhr.response;
-      let dogs = JSON.parse(data); // converts JSON object to JS object
+  xhr.get(url, (err, dogs) => {
+    if (err) throw err;
 
-      let tableRows = "";
-      for (const dog of dogs) {
-        tableRows += `
-       <tr>
-            <td>${dog.id}</td>
-            <td>${dog.name}</td>
-            <td>${dog.age}</td>
-            <td>${dog.gender}</td>
-            <td>${dog.notes}</td>
-       </tr>
-       `;
-      }
-      table.innerHTML = tableRows;
-    } else {
-      throw new Error("GET request did not succeed");
+    let tableRows = "";
+    for (const dog of dogs) {
+      tableRows += `
+     <tr>
+          <td>${dog.id}</td>
+          <td>${dog.name}</td>
+          <td>${dog.age}</td>
+          <td>${dog.gender}</td>
+          <td>${dog.notes}</td>
+     </tr>
+     `;
     }
-  };
-  xhr.send();
+    table.innerHTML = tableRows;
+  });
 };
