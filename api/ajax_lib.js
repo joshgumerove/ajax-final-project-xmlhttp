@@ -34,6 +34,17 @@ function AjaxLib() {
     // with POST request we must pass in data to the send method
     this.xhr.send(JSON.stringify(dog)); // sending raw JSON data to the server
   };
+
+  this.put = (url, dog, callback) => {
+    this.xhr.open("PUT", url);
+    this.xhr.setRequestHeader("Content-Type", "application/json");
+    this.xhr.onload = () => {
+      let data = this.xhr.response;
+      let putRequestData = JSON.parse(data);
+      callback(putRequestData);
+    };
+    this.xhr.send(JSON.stringify(dog));
+  };
 }
 
 export { AjaxLib };
