@@ -1,3 +1,5 @@
+import { AjaxLib } from "./api/ajax_lib";
+
 let para = document.querySelector("p");
 let table = document.getElementById("tableResults");
 let getButton = document.getElementById("get");

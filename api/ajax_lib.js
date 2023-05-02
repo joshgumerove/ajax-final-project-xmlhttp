@@ -1,0 +1,3 @@
+function AjaxLib() {}
+
+export { AjaxLib };
