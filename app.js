@@ -14,7 +14,7 @@ getButton.addEventListener("click", () => {
 
 const fetchDogs = () => {
   let url = `${SERVER_URL}/dogs`;
-  let xhr = new AjaxLib(); // note how this is a constructor function
+  let xhr = new AjaxLib(); // note: this is a constructor function
 
   xhr.get(url, (err, dogs) => {
     if (err) throw err;
