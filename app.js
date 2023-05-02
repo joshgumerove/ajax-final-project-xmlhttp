@@ -3,6 +3,7 @@ import { AjaxLib } from "./api/ajax_lib.js";
 let para = document.querySelector("p");
 let table = document.getElementById("tableResults");
 let getButton = document.getElementById("get");
+let postButton = document.getElementById("post");
 
 const SERVER_URL = "http://localhost:3006/api";
 
@@ -34,3 +35,19 @@ const fetchDogs = () => {
     table.innerHTML = tableRows;
   });
 };
+
+postButton.addEventListener("click", () => {
+  let dog = {
+    name: "Gumerove",
+    age: 25,
+    gender: "Male",
+    notes: "computer programmer",
+  };
+
+  let xhr = new AjaxLib();
+  let url = `${SERVER_URL}/dogs`;
+
+  xhr.post(url, dog, () => {
+    fetchDogs();
+  });
+});
