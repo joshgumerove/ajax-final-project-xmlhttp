@@ -49,5 +49,7 @@ postButton.addEventListener("click", () => {
 
   xhr.post(url, dog, () => {
     fetchDogs();
+    para.className = "post";
+    para.textContent = "POST request was successful";
   });
 });
