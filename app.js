@@ -34,50 +34,51 @@ const fetchDogs = () => {
     }
     table.innerHTML = tableRows;
   });
-
-  postButton.addEventListener("click", () => {
-    let dog = {
-      name: "Gumerove",
-      age: 25,
-      gender: "Male",
-      notes: "computer programmer",
-    };
-
-    let fetch = new AjaxLib();
-    let url = `${SERVER_URL}/dogs`;
-
-    fetch.post(url, dog, (responseData) => {
-      fetchDogs();
-      para.className = "post";
-      para.textContent = responseData.message;
-    });
-  });
-
-  putButton.addEventListener("click", () => {
-    let updatedDog = {
-      name: "Proud Mary",
-      age: 25,
-      gender: "Female",
-      notes: "this should update the name in the system",
-    };
-
-    let xhr = new AjaxLib();
-    let url = `${SERVER_URL}/dogs/1`;
-
-    xhr.put(url, updatedDog, (responseData) => {
-      fetchDogs();
-      para.className = "put";
-      para.textContent = responseData.message;
-    });
-  });
-
-  deleteButton.addEventListener("click", () => {
-    let xhr = new AjaxLib();
-    let url = `${SERVER_URL}/dogs/2`;
-    xhr.delete(url, (responseData) => {
-      fetchDogs();
-      para.className = "delete";
-      para.textContent = responseData.message;
-    });
-  });
 };
+
+postButton.addEventListener("click", () => {
+  let dog = {
+    name: "Gumerove",
+    age: 25,
+    gender: "Male",
+    notes: "computer programmer",
+  };
+
+  let fetch = new AjaxLib();
+  let url = `${SERVER_URL}/dogs`;
+
+  fetch.post(url, dog, (responseData) => {
+    fetchDogs();
+    para.className = "post";
+    para.textContent = responseData.message;
+  });
+});
+
+putButton.addEventListener("click", () => {
+  let updatedDog = {
+    name: "Proud Mary",
+    age: 25,
+    gender: "Female",
+    notes: "this should update the name in the system",
+  };
+
+  let fetch = new AjaxLib();
+  let url = `${SERVER_URL}/dogs/1`;
+
+  fetch.put(url, updatedDog, (responseData) => {
+    fetchDogs();
+    para.className = "put";
+    para.textContent = responseData.message;
+  });
+});
+
+deleteButton.addEventListener("click", () => {
+  let fetch = new AjaxLib();
+  let url = `${SERVER_URL}/dogs/2`;
+  fetch.delete(url, (responseData) => {
+    fetchDogs();
+    console.log("delete request successful");
+    para.className = "delete";
+    para.textContent = responseData.message;
+  });
+});
