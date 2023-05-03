@@ -1,6 +1,4 @@
 function AjaxLib() {
-  this.xhr = new XMLHttpRequest();
-
   // GET request
 
   this.get = (url, callback) => {
