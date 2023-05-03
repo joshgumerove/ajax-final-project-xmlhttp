@@ -19,18 +19,18 @@ const fetchDogs = () => {
   let url = `${SERVER_URL}/dogs`;
   let fetch = new AjaxLib(); // note: this is a constructor function
 
-  fetch.get(url).then((dogs) => {
+  fetch.get(url, (dogs) => {
     let tableRows = "";
     for (const dog of dogs) {
       tableRows += `
-     <tr>
-          <td>${dog.id}</td>
-          <td>${dog.name}</td>
-          <td>${dog.age}</td>
-          <td>${dog.gender}</td>
-          <td>${dog.notes}</td>
-     </tr>
-     `;
+        <tr>
+             <td>${dog.id}</td>
+             <td>${dog.name}</td>
+             <td>${dog.age}</td>
+             <td>${dog.gender}</td>
+             <td>${dog.notes}</td>
+        </tr>
+        `;
     }
     table.innerHTML = tableRows;
   });
