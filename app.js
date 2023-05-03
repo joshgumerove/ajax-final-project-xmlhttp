@@ -5,6 +5,7 @@ let table = document.getElementById("tableResults");
 let getButton = document.getElementById("get");
 let postButton = document.getElementById("post");
 let putButton = document.getElementById("put");
+let deleteButton = document.getElementById("delete");
 
 const SERVER_URL = "http://localhost:3006/api";
 
@@ -69,6 +70,16 @@ putButton.addEventListener("click", () => {
   xhr.put(url, updatedDog, (responseData) => {
     fetchDogs();
     para.className = "put";
+    para.textContent = responseData.message;
+  });
+});
+
+deleteButton.addEventListener("click", () => {
+  let xhr = new AjaxLib();
+  let url = `${SERVER_URL}/dogs/2`;
+  xhr.delete(url, (responseData) => {
+    fetchDogs();
+    para.className = "delete";
     para.textContent = responseData.message;
   });
 });

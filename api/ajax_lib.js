@@ -45,6 +45,16 @@ function AjaxLib() {
     };
     this.xhr.send(JSON.stringify(updatedDog));
   };
+
+  this.delete = (url, callback) => {
+    this.xhr.open("DELETE", url);
+    this.xhr.onload = () => {
+      let data = this.xhr.response;
+      let deleteRequestData = JSON.parse(data);
+      callback(deleteRequestData);
+    };
+    this.xhr.send();
+  };
 }
 
 export { AjaxLib };
