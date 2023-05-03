@@ -43,10 +43,10 @@ const fetchDogs = () => {
       notes: "computer programmer",
     };
 
-    let xhr = new AjaxLib();
+    let fetch = new AjaxLib();
     let url = `${SERVER_URL}/dogs`;
 
-    xhr.post(url, dog, (responseData) => {
+    fetch.post(url, dog, (responseData) => {
       fetchDogs();
       para.className = "post";
       para.textContent = responseData.message;
