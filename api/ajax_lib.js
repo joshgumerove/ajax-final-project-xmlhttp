@@ -1,21 +1,8 @@
 function AjaxLib() {
   // GET request
 
-  this.get = (url, callback) => {
-    // set up AJAX object / engine
-    this.xhr.open("GET", url, false); // pass in false to make synchronous
-
-    // define AJAX callback
-    this.xhr.onload = () => {
-      if (this.xhr.status === 200) {
-        let data = this.xhr.response;
-        let dogs = JSON.parse(data);
-        callback(null, dogs);
-      } else {
-        callback("Error has occured with a GET request");
-      }
-    };
-    this.xhr.send();
+  this.get = (url) => {
+    return fetch(url).then((data) => data.json());
   };
 
   // POST request

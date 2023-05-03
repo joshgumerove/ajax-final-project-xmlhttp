@@ -15,14 +15,13 @@ getButton.addEventListener("click", () => {
   para.textContent = "GET request was successful";
 });
 
-const fetchDogs = () => {
+const fetchDogs = (JSObject) => {
   let url = `${SERVER_URL}/dogs`;
-  let xhr = new AjaxLib(); // note: this is a constructor function
+  let fetch = new AjaxLib(); // note: this is a constructor function
 
-  xhr.get(url, (err, dogs) => {
-    if (err) throw err;
-
+  fetch.get(url).then((dogs) => {
     let tableRows = "";
+    console.log("up and running");
     for (const dog of dogs) {
       tableRows += `
      <tr>
@@ -36,50 +35,50 @@ const fetchDogs = () => {
     }
     table.innerHTML = tableRows;
   });
+
+  postButton.addEventListener("click", () => {
+    let dog = {
+      name: "Gumerove",
+      age: 25,
+      gender: "Male",
+      notes: "computer programmer",
+    };
+
+    let xhr = new AjaxLib();
+    let url = `${SERVER_URL}/dogs`;
+
+    xhr.post(url, dog, (responseData) => {
+      fetchDogs();
+      para.className = "post";
+      para.textContent = responseData.message;
+    });
+  });
+
+  putButton.addEventListener("click", () => {
+    let updatedDog = {
+      name: "Proud Mary",
+      age: 25,
+      gender: "Female",
+      notes: "this should update the name in the system",
+    };
+
+    let xhr = new AjaxLib();
+    let url = `${SERVER_URL}/dogs/1`;
+
+    xhr.put(url, updatedDog, (responseData) => {
+      fetchDogs();
+      para.className = "put";
+      para.textContent = responseData.message;
+    });
+  });
+
+  deleteButton.addEventListener("click", () => {
+    let xhr = new AjaxLib();
+    let url = `${SERVER_URL}/dogs/2`;
+    xhr.delete(url, (responseData) => {
+      fetchDogs();
+      para.className = "delete";
+      para.textContent = responseData.message;
+    });
+  });
 };
-
-postButton.addEventListener("click", () => {
-  let dog = {
-    name: "Gumerove",
-    age: 25,
-    gender: "Male",
-    notes: "computer programmer",
-  };
-
-  let xhr = new AjaxLib();
-  let url = `${SERVER_URL}/dogs`;
-
-  xhr.post(url, dog, (responseData) => {
-    fetchDogs();
-    para.className = "post";
-    para.textContent = responseData.message;
-  });
-});
-
-putButton.addEventListener("click", () => {
-  let updatedDog = {
-    name: "Proud Mary",
-    age: 25,
-    gender: "Female",
-    notes: "this should update the name in the system",
-  };
-
-  let xhr = new AjaxLib();
-  let url = `${SERVER_URL}/dogs/1`;
-
-  xhr.put(url, updatedDog, (responseData) => {
-    fetchDogs();
-    para.className = "put";
-    para.textContent = responseData.message;
-  });
-});
-
-deleteButton.addEventListener("click", () => {
-  let xhr = new AjaxLib();
-  let url = `${SERVER_URL}/dogs/2`;
-  xhr.delete(url, (responseData) => {
-    fetchDogs();
-    para.className = "delete";
-    para.textContent = responseData.message;
-  });
-});
