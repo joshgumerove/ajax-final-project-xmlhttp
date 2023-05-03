@@ -2,7 +2,9 @@ function AjaxLib() {
   // GET request
 
   this.get = (url) => {
-    return fetch(url).then((data) => data.json());
+    return fetch(url)
+      .then((data) => data.json())
+      .catch((err) => console.log("there has been an error: ", err));
   };
 
   // POST request

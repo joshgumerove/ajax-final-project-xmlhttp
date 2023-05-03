@@ -15,13 +15,12 @@ getButton.addEventListener("click", () => {
   para.textContent = "GET request was successful";
 });
 
-const fetchDogs = (JSObject) => {
+const fetchDogs = () => {
   let url = `${SERVER_URL}/dogs`;
   let fetch = new AjaxLib(); // note: this is a constructor function
 
   fetch.get(url).then((dogs) => {
     let tableRows = "";
-    console.log("up and running");
     for (const dog of dogs) {
       tableRows += `
      <tr>
