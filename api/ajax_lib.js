@@ -28,7 +28,8 @@ function AjaxLib() {
       body: JSON.stringify(updatedObject),
     })
       .then((resp) => resp.json())
-      .then((message) => callback(message));
+      .then((message) => callback(message))
+      .catch((err) => console.log("PUT request error: ", err));
   };
 
   this.delete = (url, callback) => {
@@ -36,7 +37,8 @@ function AjaxLib() {
       method: "DELETE",
     })
       .then((resp) => resp.json())
-      .then((message) => callback(message));
+      .then((message) => callback(message))
+      .catch((err) => console.log("DELETE request error: ", err));
   };
 }
 

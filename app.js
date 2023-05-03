@@ -77,7 +77,6 @@ deleteButton.addEventListener("click", () => {
   let url = `${SERVER_URL}/dogs/2`;
   fetch.delete(url, (responseData) => {
     fetchDogs();
-    console.log("delete request successful");
     para.className = "delete";
     para.textContent = responseData.message;
   });
